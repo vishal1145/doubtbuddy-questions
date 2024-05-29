@@ -51,6 +51,7 @@ $questionsPerPage = 10;
     display: none !important;
     white-space: wrap !important;
   }
+
 </style>
 </head>
 
@@ -248,7 +249,7 @@ $questionsPerPage = 10;
             <h3>${question.chapter.name}</h3>
             <p>\\(${question.description.value}\\)</p>
             <ul class='actions'>
-              <li><a href='details.php?id=${question._id}' class='button'>View Solution</a></li>
+              <li><a href='details.php?slug=${question.slug}' class='button'>View Solution</a></li>
             </ul>
           </article>
         `;

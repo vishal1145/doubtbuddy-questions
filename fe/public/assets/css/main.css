@@ -2882,7 +2882,8 @@ button:disabled,
 }
 @media screen and (max-width: 736px) {
   #header {
-    padding-top: 6.5em;
+    /* padding-top: 6.5em; */
+    padding-top:50px;
   }
   #header .logo {
     font-size: 1.25em;
