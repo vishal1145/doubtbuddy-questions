@@ -1,5 +1,5 @@
 <?php
-$url = 'https://prodapi.doubtbuddy.com/question';
+$url = 'https://uat.practiceapi.doubtbuddy.com/question';
 $options = array(
     'http' => array(
         'method' => 'GET',
@@ -189,7 +189,7 @@ $questionsPerPage = 10;
 								<section>
                   <div class="d-flex foot-cont-details">
                   
-                    <div class="w-100 me-5">
+                    <div class="w-100" style="margin-right:5em">
 									  <header class="major">
 										  <h2 class="mb-4">Get in touch</h2>
 									  </header>

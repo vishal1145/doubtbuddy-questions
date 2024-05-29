@@ -5,7 +5,7 @@ if (isset($_GET['id'])) {
     // Fetch main question details
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://prodapi.doubtbuddy.com/question/{$question_id}",
+        CURLOPT_URL => "https://uat.practiceapi.doubtbuddy.com/question/{$question_id}",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -24,7 +24,7 @@ if (isset($_GET['id'])) {
     // Fetch similar questions
     $curl = curl_init();
     curl_setopt_array($curl, array(
-        CURLOPT_URL => "https://prodapi.doubtbuddy.com/question/similar/{$question_id}",
+        CURLOPT_URL => "https://uat.practiceapi.doubtbuddy.com/question/similar/{$question_id}",
         CURLOPT_RETURNTRANSFER => true,
         CURLOPT_ENCODING => '',
         CURLOPT_MAXREDIRS => 10,
@@ -269,7 +269,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
 				<!-- Section -->
 				<section>
                   <div class="d-flex foot-cont-details">
-                	<div class="w-100 me-5">
+                	<div class="w-100" style="margin-right:5em">
 						<header class="major">
 							<h2 class="mb-4">Get in touch</h2>
 						</header>
