@@ -45,6 +45,30 @@ if (isset($_GET['id'])) {
 }
 ?>
 
+<?php
+
+$curl = curl_init();
+
+curl_setopt_array($curl, array(
+  CURLOPT_URL => 'https://uat.practiceapi.doubtbuddy.com/advertisement',
+  CURLOPT_RETURNTRANSFER => true,
+  CURLOPT_ENCODING => '',
+  CURLOPT_MAXREDIRS => 10,
+  CURLOPT_TIMEOUT => 0,
+  CURLOPT_FOLLOWLOCATION => true,
+  CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+  CURLOPT_CUSTOMREQUEST => 'GET',
+));
+
+$response = curl_exec($curl);
+curl_close($curl);
+$advertise = json_decode($response, true);
+
+$imageUrl = $advertise[0]['imageUrl']; 
+$linkUrl = $advertise[0]['linkUrl'];
+$advertiseType = $advertise[0]['type'];
+?>
+
 <!DOCTYPE HTML>
 <html>
 
@@ -229,17 +253,34 @@ print 'It took ' + i + ' iterations to sort the deck.';
 				<?php } else { ?>
 					<p>Another type</p>
 				<?php } ?>
+				
 
-					<div class="col-12 col-sm-12 col-md-12 col-lg-12">
-						<a href="#">
-							<picture>
-								<source srcset="https://search-static.byjusweb.com/assets/btla_QnA_Web.webp"
-									min-height="140" width="100%">
-								<img src="https://search-static.byjusweb.com/assets/btla_QnA_mWeb.webp" alt="Top Banner"
-									height="140" width="140">
-							</picture>
-						</a>
-					</div>
+				<!-- Advertise area -->
+				<?php if ($advertise) { ?>
+                <?php if ($advertiseType == "image") { ?>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <a href="<?php echo $linkUrl; ?>">
+                            <picture>
+                                <source srcset="<?php echo $imageUrl; ?>" min-height="140" width="100%">
+                                <img src="<?php echo $imageUrl; ?>" alt="" height="140" width="100%">
+                            </picture>
+                        </a>
+                    </div>
+                <?php } else if ($advertiseType == "video") { ?>
+                    <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
+                        <a href="<?php echo $linkUrl; ?>">
+                            <video width="100%" controls>
+                                <source src="<?php echo $imageUrl; ?>" type="video/mp4">
+                                Your browser does not support the video tag.
+                            </video>
+                        </a>
+                    </div>
+                <?php } else { ?>
+                <?php } ?>
+
+				<?php } else { ?>
+					<!-- <p>Not advertise</p> -->
+				<?php } ?>
 
 					<hr class="major" />
 
