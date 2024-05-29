@@ -1,0 +1,41 @@
+/******************************Terms-Policy-Section*******************************/
+.t-p{
+  padding:2vw 4vw;
+  font-family: Poppins, sans-serif;
+}
+.t-p-heading{
+  font-size:24px;
+  font-weight:600;
+  padding:2vw;
+  text-align:center;
+}
+.t-p-content{
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    text-align: justify;
+    line-height: 1.13;
+}
+.t-p-subheading{
+  font-size:18px;
+  font-weight: 600;
+  margin-bottom: 1%;
+}
+.numbered-list {
+  list-style-type: decimal;
+  padding:16px 0 0 16px;
+  /* You can also use other numbering styles like 'lower-alpha', 'upper-alpha', 'lower-roman', 'upper-roman', etc. */
+}
+.t-p-content li{
+  margin-bottom:10px;
+}
+.t-p-gap-bottom{
+  margin-bottom:19px;
+}
+
+@media screen and (max-width: 736px) {
+  .foot-cont-details{
+    flex-direction:column;
+  }
+}
+/***********************************************************************/
