@@ -1,10 +1,12 @@
 <?php
 
+include("env.php");
+
 if (isset($_GET['slug'])) {
-    $question_id = $_GET['slug'];
+    $question_slug = $_GET['slug'];
 
     // Fetch main question details
-    $url = "https://uat.practiceapi.doubtbuddy.com/question/" . $question_id;
+    $url = $baseUrl."question/" . $question_slug;
     $options = array(
         'http' => array(
             'method' => 'GET',
@@ -16,8 +18,8 @@ if (isset($_GET['slug'])) {
     $question = json_decode($response, true);
 
     // Fetch similar questions
-    $url = "https://uat.practiceapi.doubtbuddy.com/question/similar/" . $question_id;
-    $response = file_get_contents($url, false, $context);
+    $urls = $baseUrl."question/similar/" . $question_slug;
+    $response = file_get_contents($urls, false, $context);
     $sim_questions = json_decode($response, true);
 } else {
     header('Location: index.php');
@@ -93,7 +95,7 @@ $advertiseType = $advertise[0]['type'];
 
             <!-- Header -->
             <header id="header">
-                <a href="index.php" class="logo d-flex align-items-center"><img src="images/db-logo2.png" alt=""
+                <a href="https://doubtbuddy.com/question" class="logo d-flex align-items-center"><img src="images/db-logo2.png" alt=""
                                                                                 style="width:25px">
                     <h2 class="mb-0 ms-2">DoubtBuddy</h2>
                 </a>
@@ -267,10 +269,11 @@ print 'It took ' + i + ' iterations to sort the deck.';
                                     <h3>{$sim_question['chapter']['name']}</h3>
                                     <p>\({$sim_question['description']['value']}\)</p>
                                     <ul class='actions'>
-                                        <li><a href='details.php?slug=${sim_question_slug}' class='button'>View Solution</a></li>
+                                    <li><a href='${sim_question_slug}' class='button'>View Solution</a></li>
                                     </ul>
-                                </article>";
-                    }
+                                    </article>";
+                                }
+                                // <li><a href='details.php?slug=${sim_question_slug}' class='button'>View Solution</a></li>
                 } else {
                     echo "<p>No similar questions available at the moment.</p>";
                 }

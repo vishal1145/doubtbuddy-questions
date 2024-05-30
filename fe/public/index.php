@@ -1,5 +1,16 @@
+
 <?php
-$url = 'https://uat.practiceapi.doubtbuddy.com/question';
+
+include("env.php");
+
+$pageNo = 1;
+
+
+if(isset($_GET['page'])){
+  $pageNo = $_GET['page'];
+}
+
+$url = $baseUrl.'question?page='.$pageNo;
 $options = array(
     'http' => array(
         'method' => 'GET',
@@ -12,6 +23,8 @@ $questions = json_decode($response, true);
 
 $totalQuestions = count($questions);
 $questionsPerPage = 10;
+// var_dump($questions);
+// exit;
 ?>
 
 <!DOCTYPE HTML>
@@ -57,6 +70,8 @@ $questionsPerPage = 10;
 
 <body class="is-preload" >
 
+  <input type="hidden" value="<?php echo $pageNo ?>" id="pageNo" />
+
   <!-- Wrapper -->
   <div id="wrapper">
 
@@ -66,7 +81,7 @@ $questionsPerPage = 10;
 
         <!-- Header -->
         <header id="header">
-          <a href="index.php" class="logo d-flex align-items-center"><img src="images/db-logo2.png" alt=""
+          <a href="https://doubtbuddy.com/question" class="logo d-flex align-items-center"><img src="images/db-logo2.png" alt=""
               style="width:25px">
             <h2 class="mb-0 ms-2">DoubtBuddy</h2>
           </a>
@@ -113,23 +128,23 @@ $questionsPerPage = 10;
             <h2>Questions</h2>
           </header>
           <div id="questions" class="posts">
-            <!-- <?php 
-            // if (is_array($questions) && !empty($questions)) {
-            //   foreach ($questions as $question) {
-            //     $question_id = $question['_id'];
-            //     echo "<article id=".$pageNo." style=".$display.">
-            //             <h3>{$question['chapter']['name']}</h3>
-            //             <p>\({$question['description']['value']}\)</p>
-                        
-            //             <ul class='actions'>
-            //               <li><a href='details.php?id={$question_id}' class='button'>View Solution</a></li>
-            //             </ul>
-            //           </article>";
-            //   }
-            // } else {
-            //   echo "<p>No questions available at the moment.</p>";
-            // }
-            ?>  -->
+            <?php 
+              if (is_array($questions) && !empty($questions)) {
+                foreach ($questions as $question) {
+                  $question_slug = $question['slug'];
+                  echo "<article id=".$pageNo." style=".$display.">
+                          <h3>{$question['chapter']['name']}</h3>
+                          <p>\({$question['description']['value']}\)</p>
+                          
+                          <ul class='actions'>
+                            <li><a href='{$question_slug}' class='button'>View Solution</a></li>
+                          </ul>
+                        </article>";
+                }
+              } else {
+                echo "<p>No questions available at the moment.</p>";
+              }
+            ?> 
             
             </div>
         </section>
@@ -251,8 +266,9 @@ $questionsPerPage = 10;
             <ul class='actions'>
               <li><a href='details.php?slug=${question.slug}' class='button'>View Solution</a></li>
             </ul>
-          </article>
-        `;
+            </article>
+            `;
+            // <li><a href='/${question.slug}' class='button'>View Solution</a></li>
         questionsContainer.insertAdjacentHTML('beforeend', questionHTML);
       });
       
@@ -264,11 +280,17 @@ $questionsPerPage = 10;
     }
 
     function loadMore() {
-      currentPage++;
-      loadQuestions();
+      //currentPage++;
+      //loadQuestions();
+
+      var pageId = parseInt(document.getElementById("pageNo").value) + 1; 
+      //alert(window.location.href+ "?page="+pageId);
+      var url = window.location.origin + window.location.pathname + "?page="+pageId;
+      window.location.href  = url;
+
     }
 
-    loadQuestions();
+    //loadQuestions();
   </script>
 
 </body>

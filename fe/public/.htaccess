@@ -1,0 +1,21 @@
+Options +FollowSymLinks
+RewriteEngine On
+
+# Rewrite .php requests to clean URLs
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.*)$ $1.php [L]
+
+# Return 404 if original request is .php
+RewriteCond %{THE_REQUEST} "^[^ ]* .*?\.php[? ].*$"
+RewriteRule .* - [L,R=404]
+
+# Handle clean URLs for details.php
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-l
+RewriteRule ^([a-zA-Z0-9_-]+)$ details.php?slug=$1 [L,QSA]
+
+# Handle full URL with details.php in path
+RewriteRule ^details.php/([a-zA-Z0-9_-]+)$ http://localhost/doubtbuddy-questions/fe/public/details.php?slug=$1 [L,QSA]
