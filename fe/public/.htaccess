@@ -16,6 +16,8 @@ RewriteCond %{REQUEST_FILENAME} !-d
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-l
 RewriteRule ^([a-zA-Z0-9_-]+)$ details.php?slug=$1 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)$ terms.php?slug=$1 [L,QSA]
+RewriteRule ^([a-zA-Z0-9_-]+)$ policy.php?slug=$1 [L,QSA]
 
 # Handle full URL with details.php in path
-RewriteRule ^details.php/([a-zA-Z0-9_-]+)$ http://localhost/doubtbuddy-questions/fe/public/details.php?slug=$1 [L,QSA]
+# RewriteRule ^details.php/([a-zA-Z0-9_-]+)$ http://localhost/doubtbuddy-questions/fe/public/details.php?slug=$1 [L,QSA]

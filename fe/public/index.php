@@ -222,8 +222,8 @@ $questionsPerPage = 10;
 										  <li class="icon solid fa-home">M3M Cosmopolitian, Sector 66 Golf Course Extension Road Gurgaon</li>
                       <li>
                         <!-- <a href="#Contact">Contact</a> -->
-                        <a class="me-4" href="policy.php" target="_blank" rel="noreferrer">Policy</a>
-                        <a href="terms.php" target="_blank" rel="noreferrer">Terms</a>
+                        <a class="me-4" href="policy" target="_blank" rel="noreferrer">Policy</a>
+                        <a href="terms" target="_blank" rel="noreferrer">Terms</a>
                       </li>
 									  </ul>               
                   </div>
