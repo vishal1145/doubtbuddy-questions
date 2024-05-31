@@ -2436,6 +2436,10 @@ button:disabled,
   margin: 0 0 6em 6em;
   position: relative;
   width: calc(33.33333% - 6em);
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 .posts article:before {
   background: rgba(210, 215, 217, 0.75);

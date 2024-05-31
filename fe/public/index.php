@@ -149,9 +149,9 @@ $questionsPerPage = 10;
             </div>
         </section>
 
-        <section class="py-2">
+        <section class="py-1" style="background: rgb(127 136 143 / 30%);">
           <div class="text-center">
-            <button onclick="loadMore()" id="load-more">Load More</button>
+            <button onclick="loadMore()" id="load-more" style="width:100%; color: #3d4449 !important; box-shadow:none;">+ Load More</button>
           </div>
         </section>
 
@@ -217,13 +217,13 @@ $questionsPerPage = 10;
 										  <h2 class="mb-4">Contact Details</h2>
 									  </header>
 									  <ul class="contact">
-										  <li class="icon solid fa-envelope"><a href="#">community@doubtbuddy.in</a></li>
-										  <li class="icon solid fa-phone">support@doubtbuddy.com</li>
-										  <li class="icon solid fa-home">M3M Cosmopolitian, Sector 66 Golf Course Extension Road Gurgaon</li>
-                      <li>
+										  <li class="icon solid fa-envelope"><a href="mailto:community@doubtbuddy.in">community@doubtbuddy.in</a></li>
+										 <li class="icon solid fa-phone"><a href="tel:9897940807">+91 9897940807</a></li>
+										  <li class="icon solid fa-home">M3M Cosmopolitian, Sector 66, Golf Course Extension Road, Gurgaon</li>
+                      <li class="ps-0">
                         <!-- <a href="#Contact">Contact</a> -->
-                        <a class="me-4" href="policy" target="_blank" rel="noreferrer">Policy</a>
-                        <a href="terms" target="_blank" rel="noreferrer">Terms</a>
+                        <a class="me-4 ms-1" href="https://doubtbuddy.com/privacy-policy" target="_blank" rel="noreferrer">Policy</a>
+                        <a href="https://doubtbuddy.com/tnc" target="_blank" rel="noreferrer">Terms</a>
                       </li>
 									  </ul>               
                   </div>
@@ -233,7 +233,7 @@ $questionsPerPage = 10;
 							<!-- Footer -->
               <section class="py-2">
 								<footer id="footer" class="text-center">
-									<p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a>. Website: <a href="https://doubtbuddy.com">DoubtBuddy</a>.</p>
+									<p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a> Website: <a href="https://doubtbuddy.com">DoubtBuddy</a>.</p>
 								</footer>
               </section>
         </div>
@@ -264,7 +264,7 @@ $questionsPerPage = 10;
             <h3>${question.chapter.name}</h3>
             <p>\\(${question.description.value}\\)</p>
             <ul class='actions'>
-              <li><a href='details.php?slug=${question.slug}' class='button'>View Solution</a></li>
+              <li><a href='${question.slug}' class='button'>View Solution</a></li>
             </ul>
             </article>
             `;

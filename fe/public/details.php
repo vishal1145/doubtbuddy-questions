@@ -231,10 +231,10 @@ print 'It took ' + i + ' iterations to sort the deck.';
             <?php if ($advertise) { ?>
                 <?php if ($advertiseType == "image") { ?>
                     <div class="col-12 col-sm-12 col-md-12 col-lg-12 text-center">
-                        <a href="<?php echo $linkUrl; ?>">
+                        <a href="<?php echo $linkUrl; ?>" target="_blank">
                             <picture>
-                                <source srcset="<?php echo $imageUrl; ?>" min-height="140" width="100%">
-                                <img src="<?php echo $imageUrl; ?>" alt="" height="140" width="100%">
+                                <source srcset="<?php echo $imageUrl; ?>" min-height="140px" width="100%">
+                                <img src="<?php echo $imageUrl; ?>" alt="" height="140px" width="100%">
                             </picture>
                         </a>
                     </div>
@@ -295,15 +295,15 @@ print 'It took ' + i + ' iterations to sort the deck.';
                             <h2 class="mb-4">Contact Details</h2>
                         </header>
                         <ul class="contact">
-                            <li class="icon solid fa-envelope"><a href="#">community@doubtbuddy.in</a></li>
-                            <li class="icon solid fa-phone">support@doubtbuddy.com</li>
-                            <li class="icon solid fa-home">M3M Cosmopolitian, Sector 66 Golf Course Extension Road Gurgaon</li>
-                            <li>
-                                <!-- <a href="#Contact">Contact</a> -->
-                                <a class="me-4" href="policy" target="_blank" rel="noreferrer">Policy</a>
-                                <a href="terms" target="_blank" rel="noreferrer">Terms</a>
-                            </li>
-                        </ul>
+						<li class="icon solid fa-envelope"><a href="mailto:community@doubtbuddy.in">community@doubtbuddy.in</a></li>
+						<li class="icon solid fa-phone"><a href="tel:9897940807">+91 9897940807</a></li>
+						<li class="icon solid fa-home">M3M Cosmopolitian, Sector 66, Golf Course Extension Road, Gurgaon</li>
+                        <li class="ps-0">
+                        
+                        <a class="me-4 ms-1" href="https://doubtbuddy.com/privacy-policy" target="_blank" rel="noreferrer">Policy</a>
+                        <a href="https://doubtbuddy.com/tnc" target="_blank" rel="noreferrer">Terms</a>
+                      </li>
+					</ul>     
                     </div>
                 </div>
             </section>
@@ -311,7 +311,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
             <!-- Footer -->
             <section class="py-2">
                 <footer id="footer" class="text-center">
-                    <p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a>. Website: <a
+                    <p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a> Website: <a
                                 href="https://doubtbuddy.com">DoubtBuddy</a>.</p>
                 </footer>
             </section>
