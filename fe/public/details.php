@@ -137,10 +137,10 @@ $advertiseType = $advertise[0]['type'];
                     <?php if ($question_opt) { ?>
                         <h3>Options : </h3>
                         <div class="d-flex">
-                        <p><span style="font-size:1.2em;">(a) </span><?php echo $question['options']['a']['value']; ?></p>
-                        <p class="ms-4"><span style="font-size:1.2em;">(b) </span><?php echo $question['options']['b']['value']; ?></p>
-                        <p class="ms-4"><span style="font-size:1.2em;">(c) </span><?php echo $question['options']['c']['value']; ?></p>
-                        <p class="ms-4"><span style="font-size:1.2em;">(d) </span><?php echo $question['options']['d']['value']; ?></p>
+                        <p><span style="font-size:1.2em;">(a) </span><?php echo $question['options']['a']['value']; ?>
+                        <span class="ms-4" style="font-size:1.2em;">(b) </span><?php echo $question['options']['b']['value']; ?>
+                        <span class="ms-4" style="font-size:1.2em;">(c) </span><?php echo $question['options']['c']['value']; ?>
+                        <span class="ms-4" style="font-size:1.2em;">(d) </span><?php echo $question['options']['d']['value']; ?></p>
                         </div>
                     <?php } else { ?>
                         <p></p>
