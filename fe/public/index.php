@@ -47,7 +47,7 @@ $questionsPerPage = 10;
     <meta property="og:title" content="DoubtBuddy-Question" />
     <meta property="og:description" content="Collection of DoubtBuddy questions" />
     <meta property="og:image" content="images/db-logo2.png" />
-    <meta property="og:url" content="https://doubtbuddy-question.web.app/" />
+    <meta property="og:url" content="https://doubtbuddy.com/question/" />
     <meta property="og:type" content="website" />
 
    <!-- Include MathJax -->
@@ -137,7 +137,7 @@ $questionsPerPage = 10;
               if (is_array($questions) && !empty($questions)) {
                 foreach ($questions as $question) {
                   $question_slug = $question['slug'];
-                  echo "<article id=".$pageNo." style=".$display.">
+                  echo "<article id='.$pageNo.'>
                           <h3>{$question['chapter']['name']}</h3>
                           <p>{$question['description']['value']}</p>
                           <ul class='actions'>

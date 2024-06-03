@@ -25,6 +25,22 @@ if (isset($_GET['slug'])) {
     header('Location: index.php');
     exit();
 }
+
+// if (isset($_GET['slug'])) {
+//     $question_slug = $_GET['slug'];
+
+//     // Fetch main question details
+//     $url = $baseUrl."question/similar/" . $question_slug;
+//     $options = array(
+//         'http' => array(
+//             'method' => 'GET',
+//             'header' => 'Content-Type: application/json'
+//         )
+//     );
+//     $context = stream_context_create($options);
+//     $response = file_get_contents($url, false, $context);
+//     $sim_questions = json_decode($response, true);
+// }
 ?>
 
 <?php
@@ -76,7 +92,7 @@ $solution_img = $question['solution']['image'];
     <meta property="og:title" content="DoubtBuddy-Question" />
     <meta property="og:description" content="Collection of DoubtBuddy questions" />
     <meta property="og:image" content="images/db-logo2.png" />
-    <meta property="og:url" content="https://doubtbuddy-question.web.app/" />
+    <meta property="og:url" content="https://doubtbuddy.com/question/" />
     <meta property="og:type" content="website" />
 
     <!-- Include MathJax -->
@@ -133,7 +149,7 @@ $solution_img = $question['solution']['image'];
             <?php if ($question['type'] === "SC") { ?>
                 <section>
                     <header class="main">
-                            <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                            <h3>Question : <?php echo $question['chapter']['name']; ?></h3>
                              <?php if ($question_img) { ?>
                                 <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                             <?php } ?>
@@ -172,25 +188,12 @@ $solution_img = $question['solution']['image'];
                     <?php } else { ?>
                         <p></p>
                     <?php } ?>
-
-                    <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <pre><code>
-i = 0;
-while (!deck.isInOrder()) {
-  print 'Iteration ' + i;
-  deck.shuffle();
-  i++;
-}
-print 'It took ' + i + ' iterations to sort the deck.';
-
-</code></pre>
-                    </div> -->
                 </section>
 
             <?php } else if ($question['type'] === "Subjective") { ?>
                 <section>
                     <header class="main">
-                        <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                        <h3>Question : <?php echo $question['chapter']['name']; ?></h3>
                           <?php if ($question_img) { ?>
                                 <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                             <?php } ?>
@@ -212,7 +215,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
             <?php } else if ($question['type'] === "True False") { ?>
                 <section>
                     <header class="main">
-                            <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                            <h3>Question : <?php echo $question['chapter']['name']; ?></h3>
                              <?php if ($question_img) { ?>
                                 <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                             <?php } ?>
@@ -222,6 +225,17 @@ print 'It took ' + i + ' iterations to sort the deck.';
                             <p>Assertion: <?php echo $question['description']['assertion']['value']; ?></p>
                             <p>Reason : <?php echo $question['description']['reason']['value']; ?></p>
                     </header>
+
+                    <?php if ($question_opt) { ?>
+                        <h3>Options : </h3>
+                        <div class="d-flex">
+                        <p><span style="font-size:1.2em;">(a) </span><span class="me-4"><?php echo $question['options']['a']['value']; ?></span>
+                        <span style="font-size:1.2em;">(b) </span><span><?php echo $question['options']['b']['value']; ?></span>
+                        </p>
+                        </div>
+                    <?php } else { ?>
+                        <p></p>
+                    <?php } ?>
 
                     <h3>Solution :</h3>
                     <?php
@@ -257,7 +271,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
                         <a href="<?php echo $linkUrl; ?>" target="_blank">
                             <picture>
                                 <source srcset="<?php echo $imageUrl; ?>" min-height="140px" width="100%">
-                                <img src="<?php echo $imageUrl; ?>" alt="" height="140px" width="100%">
+                                <img src="<?php echo $imageUrl; ?>" loading="lazy" alt="" height="140px" width="100%">
                             </picture>
                         </a>
                     </div>
@@ -298,7 +312,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
                                 }
                                 // <li><a href='details.php?slug=${sim_question_slug}' class='button'>View Solution</a></li>
                 } else {
-                    echo "<p>No similar questions available at the moment.</p>";
+                    echo "<p></p>";
                 }
                 ?>
             </div>
