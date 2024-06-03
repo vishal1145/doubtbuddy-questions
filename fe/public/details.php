@@ -27,10 +27,6 @@ if (isset($_GET['slug'])) {
 }
 ?>
 
-<?php function replaceSingleDollarSigns($text) {
-    return str_replace('$', '$$', $text);
-} ?>
-
 <?php
 // Fetch advertisement
 $url = 'https://uat.practiceapi.doubtbuddy.com/advertisement';
@@ -47,6 +43,17 @@ $advertise = json_decode($response, true);
 $imageUrl = $advertise[0]['imageUrl'];
 $linkUrl = $advertise[0]['linkUrl'];
 $advertiseType = $advertise[0]['type'];
+?>
+
+<?php function replaceSingleDollarSigns($text) {
+    return str_replace('$', '$$', $text);
+} 
+
+$question_opt = $question['options'];
+$question_ans = $question['answer'];
+$question_img = $question['description']['image'];
+$solution_img = $question['solution']['image'];
+
 ?>
 
 <!DOCTYPE HTML>
@@ -122,25 +129,25 @@ $advertiseType = $advertise[0]['type'];
             </header>
 
             <!-- Content -->
-            <?php
-             $question_opt= $question['options'];
-             $question_ans= $question['answer']; 
-            ?>
 
             <?php if ($question['type'] === "SC") { ?>
                 <section>
                     <header class="main">
                             <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                             <?php if ($question_img) { ?>
+                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                            <?php } ?>
+
                             <p><?php echo $question['description']['value']; ?></p>
                     </header>
 
                     <?php if ($question_opt) { ?>
                         <h3>Options : </h3>
                         <div class="d-flex">
-                        <p><span style="font-size:1.2em;">(a) </span><?php echo $question['options']['a']['value']; ?>
-                        <span class="ms-4" style="font-size:1.2em;">(b) </span><?php echo $question['options']['b']['value']; ?>
-                        <span class="ms-4" style="font-size:1.2em;">(c) </span><?php echo $question['options']['c']['value']; ?>
-                        <span class="ms-4" style="font-size:1.2em;">(d) </span><?php echo $question['options']['d']['value']; ?></p>
+                        <p><span style="font-size:1.2em;">(a) </span><span class="me-4"><?php echo $question['options']['a']['value']; ?></span>
+                        <span style="font-size:1.2em;">(b) </span><span class="me-4"><?php echo $question['options']['b']['value']; ?></span>
+                        <span style="font-size:1.2em;">(c) </span><span class="me-4"><?php echo $question['options']['c']['value']; ?></span>
+                        <span style="font-size:1.2em;">(d) </span><span><?php echo $question['options']['d']['value']; ?></span></p>
                         </div>
                     <?php } else { ?>
                         <p></p>
@@ -151,6 +158,9 @@ $advertiseType = $advertise[0]['type'];
                         $question_solution = $question['solution']['description'];
                         $solution_description = replaceSingleDollarSigns($question_solution);
                     ?>
+                        <?php if ($solution_img) { ?>
+                            <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
+                        <?php } ?>
                         <p><?php echo $solution_description; ?></p>
                     
 
@@ -163,7 +173,7 @@ $advertiseType = $advertise[0]['type'];
                         <p></p>
                     <?php } ?>
 
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
+                    <!-- <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <pre><code>
 i = 0;
 while (!deck.isInOrder()) {
@@ -174,13 +184,16 @@ while (!deck.isInOrder()) {
 print 'It took ' + i + ' iterations to sort the deck.';
 
 </code></pre>
-                    </div>
+                    </div> -->
                 </section>
 
             <?php } else if ($question['type'] === "Subjective") { ?>
                 <section>
                     <header class="main">
                         <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                          <?php if ($question_img) { ?>
+                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                            <?php } ?>
                         <p><?php echo $question['description']['value']; ?></p>
                     </header>
 
@@ -189,26 +202,21 @@ print 'It took ' + i + ' iterations to sort the deck.';
                         $question_solution = $question['solution']['description'];
                         $solution_description = replaceSingleDollarSigns($question_solution);
                     ?>
+                        <?php if ($solution_img) { ?>
+                            <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
+                        <?php } ?>
+
                         <p><?php echo $solution_description; ?></p>
-
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <pre><code>
-i = 0;
-while (!deck.isInOrder()) {
-  print 'Iteration ' + i;
-  deck.shuffle();
-  i++;
-}
-print 'It took ' + i + ' iterations to sort the deck.';
-
-</code></pre>
-                    </div>
                 </section>
 
             <?php } else if ($question['type'] === "True False") { ?>
                 <section>
                     <header class="main">
                             <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                             <?php if ($question_img) { ?>
+                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                            <?php } ?>
+
                             <p><?php echo $question['description']['value']; ?></p>
 
                             <p>Assertion: <?php echo $question['description']['assertion']['value']; ?></p>
@@ -220,6 +228,9 @@ print 'It took ' + i + ' iterations to sort the deck.';
                         $question_solution = $question['solution']['description'];
                         $solution_description = replaceSingleDollarSigns($question_solution);
                     ?>
+                        <?php if ($solution_img) { ?>
+                            <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
+                        <?php } ?>
                         <p><?php echo $solution_description; ?></p>
                     
 
@@ -232,18 +243,6 @@ print 'It took ' + i + ' iterations to sort the deck.';
                         <p></p>
                     <?php } ?>
 
-                    <div class="col-12 col-sm-12 col-md-6 col-lg-6">
-                        <pre><code>
-i = 0;
-while (!deck.isInOrder()) {
-  print 'Iteration ' + i;
-  deck.shuffle();
-  i++;
-}
-print 'It took ' + i + ' iterations to sort the deck.';
-
-</code></pre>
-                    </div>
                 </section>
 
             <?php } else { ?>
