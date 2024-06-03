@@ -56,14 +56,19 @@ $questionsPerPage = 10;
 
 <style>
   mjx-math {
-    white-space: wrap !important;
-    line-height: 0.7 !important;
-    word-spacing: 1em !important;
-  }
-  mjx-assistive-mml math{
-    display: none !important;
-    white-space: wrap !important;
-  }
+            white-space: wrap !important;
+            /* line-height: 0.7 !important; */
+            display:inline !important;
+        }
+        mjx-assistive-mml math {
+            display: none !important;
+            white-space: wrap !important;
+        }
+        mjx-container[jax="CHTML"][display="true"] {
+            display: inline !important;
+            text-align: center;
+            margin: 1em 0;
+        }
 
 </style>
 </head>
@@ -134,8 +139,7 @@ $questionsPerPage = 10;
                   $question_slug = $question['slug'];
                   echo "<article id=".$pageNo." style=".$display.">
                           <h3>{$question['chapter']['name']}</h3>
-                          <p>\({$question['description']['value']}\)</p>
-                          
+                          <p>{$question['description']['value']}</p>
                           <ul class='actions'>
                             <li><a href='{$question_slug}' class='button'>View Solution</a></li>
                           </ul>
@@ -149,9 +153,9 @@ $questionsPerPage = 10;
             </div>
         </section>
 
-        <section class="py-1" style="background: rgb(127 136 143 / 30%);">
+        <section class="py-0" style="background: rgb(127 136 143 / 30%);">
           <div class="text-center">
-            <button onclick="loadMore()" id="load-more" style="width:100%; color: #3d4449 !important; box-shadow:none;">+ Load More</button>
+            <button class="px-0" onclick="loadMore()" id="load-more" style="width:100%; color: #3d4449 !important; box-shadow:none;">+ Load More</button>
           </div>
         </section>
 
@@ -263,6 +267,7 @@ $questionsPerPage = 10;
           <article>
             <h3>${question.chapter.name}</h3>
             <p>\\(${question.description.value}\\)</p>
+        
             <ul class='actions'>
               <li><a href='${question.slug}' class='button'>View Solution</a></li>
             </ul>

@@ -16,7 +16,7 @@ if (isset($_GET['slug'])) {
     $context = stream_context_create($options);
     $response = file_get_contents($url, false, $context);
     $question = json_decode($response, true);
-
+    
     // Fetch similar questions
     $urls = $baseUrl."question/similar/" . $question_slug;
     $response = file_get_contents($urls, false, $context);
@@ -26,6 +26,10 @@ if (isset($_GET['slug'])) {
     exit();
 }
 ?>
+
+<?php function replaceSingleDollarSigns($text) {
+    return str_replace('$', '$$', $text);
+} ?>
 
 <?php
 // Fetch advertisement
@@ -72,15 +76,23 @@ $advertiseType = $advertise[0]['type'];
     <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
     <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
+
     <style>
         mjx-math {
             white-space: wrap !important;
-            line-height: 0.7 !important;
+            /* line-height: 0.7 !important; */
+            display:inline !important;
         }
         mjx-assistive-mml math {
             display: none !important;
             white-space: wrap !important;
         }
+        mjx-container[jax="CHTML"][display="true"] {
+            display: inline !important;
+            text-align: center;
+            margin: 1em 0;
+        }
+        
     </style>
 </head>
 
@@ -110,29 +122,45 @@ $advertiseType = $advertise[0]['type'];
             </header>
 
             <!-- Content -->
+            <?php
+             $question_opt= $question['options'];
+             $question_ans= $question['answer']; 
+            ?>
+
             <?php if ($question['type'] === "SC") { ?>
                 <section>
                     <header class="main">
-                        <?php if (!empty($question)) { ?>
                             <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
-                            <p>\(<?php echo $question['description']['value']; ?>\)</p>
-                        <?php } else { ?>
-                            <p>Question not available.</p>
-                        <?php } ?>
+                            <p><?php echo $question['description']['value']; ?></p>
                     </header>
 
-                    <h3>Solution :</h3>
-                    <?php if (!empty($question)) { ?>
-                        <p>\(<?php echo $question['solution']['description']; ?>\)</p>
+                    <?php if ($question_opt) { ?>
+                        <h3>Options : </h3>
+                        <div class="d-flex">
+                        <p><span style="font-size:1.2em;">(a) </span><?php echo $question['options']['a']['value']; ?></p>
+                        <p class="ms-4"><span style="font-size:1.2em;">(b) </span><?php echo $question['options']['b']['value']; ?></p>
+                        <p class="ms-4"><span style="font-size:1.2em;">(c) </span><?php echo $question['options']['c']['value']; ?></p>
+                        <p class="ms-4"><span style="font-size:1.2em;">(d) </span><?php echo $question['options']['d']['value']; ?></p>
+                        </div>
                     <?php } else { ?>
-                        <p>Solution not available.</p>
+                        <p></p>
                     <?php } ?>
 
-                    <h3>Answer :</h3>
-                    <?php if (!empty($question)) { ?>
-                        <p><?php echo htmlspecialchars($question['answer']); ?></p>
+                    <h3>Solution :</h3>
+                    <?php
+                        $question_solution = $question['solution']['description'];
+                        $solution_description = replaceSingleDollarSigns($question_solution);
+                    ?>
+                        <p><?php echo $solution_description; ?></p>
+                    
+
+                    <?php if ($question_ans) { ?>
+                        <div class="d-flex">
+                        <h3>Answer :</h3> 
+                        <p class="ms-3" style="font-size:1.2em;"><?php echo htmlspecialchars($question['answer']); ?></p>
+                        </div>
                     <?php } else { ?>
-                        <p>Answer not available.</p>
+                        <p></p>
                     <?php } ?>
 
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -152,20 +180,16 @@ print 'It took ' + i + ' iterations to sort the deck.';
             <?php } else if ($question['type'] === "Subjective") { ?>
                 <section>
                     <header class="main">
-                        <?php if (!empty($question)) { ?>
-                            <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
-                            <p>\(<?php echo $question['description']['value']; ?>\)</p>
-                        <?php } else { ?>
-                            <p>Question not available.</p>
-                        <?php } ?>
+                        <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
+                        <p><?php echo $question['description']['value']; ?></p>
                     </header>
 
                     <h3>Solution :</h3>
-                    <?php if (!empty($question)) { ?>
-                        <p>\(<?php echo $question['solution']['description']; ?>\)</p>
-                    <?php } else { ?>
-                        <p>Solution not available.</p>
-                    <?php } ?>
+                    <?php
+                        $question_solution = $question['solution']['description'];
+                        $solution_description = replaceSingleDollarSigns($question_solution);
+                    ?>
+                        <p><?php echo $solution_description; ?></p>
 
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
                         <pre><code>
@@ -184,28 +208,28 @@ print 'It took ' + i + ' iterations to sort the deck.';
             <?php } else if ($question['type'] === "True False") { ?>
                 <section>
                     <header class="main">
-                        <?php if (!empty($question)) { ?>
                             <h3>Question : <?php echo htmlspecialchars($question['chapter']['name']); ?></h3>
-                            <p>\(<?php echo $question['description']['value']; ?>\)</p>
-                            <p>Assertion: \(<?php echo $question['description']['assertion']['value']; ?>\)</p>
-                            <p>Reason : \(<?php echo $question['description']['reason']['value']; ?>\)</p>
-                        <?php } else { ?>
-                            <p>Question not available.</p>
-                        <?php } ?>
+                            <p><?php echo $question['description']['value']; ?></p>
+
+                            <p>Assertion: <?php echo $question['description']['assertion']['value']; ?></p>
+                            <p>Reason : <?php echo $question['description']['reason']['value']; ?></p>
                     </header>
 
                     <h3>Solution :</h3>
-                    <?php if (!empty($question)) { ?>
-                        <p>\(<?php echo $question['solution']['description']; ?>\)</p>
-                    <?php } else { ?>
-                        <p>Solution not available.</p>
-                    <?php } ?>
+                    <?php
+                        $question_solution = $question['solution']['description'];
+                        $solution_description = replaceSingleDollarSigns($question_solution);
+                    ?>
+                        <p><?php echo $solution_description; ?></p>
+                    
 
-                    <h3>Answer :</h3>
-                    <?php if (!empty($question)) { ?>
-                        <p><?php echo htmlspecialchars($question['answer']); ?></p>
+                    <?php if ($question_ans) { ?>
+                        <div class="d-flex">
+                        <h3>Answer :</h3>
+                        <p class="ms-3" style="font-size:1.2em;"><?php echo htmlspecialchars($question['answer']); ?></p>
+                        </div>
                     <?php } else { ?>
-                        <p>Answer not available.</p>
+                        <p></p>
                     <?php } ?>
 
                     <div class="col-12 col-sm-12 col-md-6 col-lg-6">
@@ -223,7 +247,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
                 </section>
 
             <?php } else { ?>
-                <p>Another type</p>
+                <p></p>
             <?php } ?>
 
 
@@ -267,7 +291,7 @@ print 'It took ' + i + ' iterations to sort the deck.';
                         $sim_question_slug = $sim_question['slug'];
                         echo "<article>
                                     <h3>{$sim_question['chapter']['name']}</h3>
-                                    <p>\({$sim_question['description']['value']}\)</p>
+                                    <p>{$sim_question['description']['value']}</p>
                                     <ul class='actions'>
                                     <li><a href='${sim_question_slug}' class='button'>View Solution</a></li>
                                     </ul>
