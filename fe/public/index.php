@@ -64,12 +64,26 @@ $questionsPerPage = 10;
     display: inline !important;
     /* line-height:2 !important; */
   }
-
-  /* @media screen and (max-width: 736px) {
-    mjx-container[jax="CHTML"][display="true"] {
-      line-height:0 !important;
+  
+  .chapter-head{
+    font-size:16px;
+    font-weight:600;
+  }
+  
+  @media screen and (max-width: 736px) {
+    .chapter-head{
+      font-size:14px;
     }
-  } */
+    .question-des{
+      font-size:14px;
+    }
+    .feature-des{
+      font-size:14px;
+    }
+    .top-head{
+      font-size:14;
+    }
+  }
 
 </style>
 </head>
@@ -110,7 +124,7 @@ $questionsPerPage = 10;
                 Buddy</h1>
                 <p style="font-weight:500;">Solve your doubts instantly & available 24/7</p>
                 </header>
-            <p>Doubtbuddy is your tutor in your
+            <p class="top-head">Doubtbuddy is your tutor in your
               pocket , whenever you are stuck at a problem , 
               just click on the image of your doubt and get 
               instant solution.
@@ -137,8 +151,8 @@ $questionsPerPage = 10;
                 foreach ($questions as $question) {
                   $question_slug = $question['slug'];
                   echo "<article id='.$pageNo.'>
-                          <h3 style='font-weight:600; font-size:14px;'>{$question['chapter']['name']}</h3>
-                          <p style='font-size:14px;'>{$question['description']['value']}</p>
+                          <h3 class='chapter-head'>{$question['chapter']['name']}</h3>
+                          <p class='question-des'>{$question['description']['value']}</p>
                           <ul class='actions'>
                             <li><a href='{$question_slug}' class='button'>View Solution</a></li>
                           </ul>
@@ -169,7 +183,7 @@ $questionsPerPage = 10;
               <span class="icon"><img class="" src="images/feature-1.png" alt="" style="width:50%"></span>
               <div class="content">
                 <h3 style="font-size:16px;">Solve your Doubts Instantly</h3>
-                <p style="font-size:14px;">Solve your doubts instantly with DoubtBuddy, where expert tutors and comprehensive
+                <p class="feature-des">Solve your doubts instantly with DoubtBuddy, where expert tutors and comprehensive
                   resources provide immediate,
                   effective assistance anytime you need.</p>
               </div>
@@ -178,7 +192,7 @@ $questionsPerPage = 10;
               <span class="icon"><img class="" src="images/feature-2.png" alt="" style="width:50%"></span>
               <div class="content">
                 <h3 style="font-size:16px;">Now Practice based on your Aptitude</h3>
-                <p style="font-size:14px">Practice based on your aptitude with DoubtBuddy, offering tailored exercises and
+                <p class="feature-des">Practice based on your aptitude with DoubtBuddy, offering tailored exercises and
                   quizzes that match your skill level for
                   optimal learning.</p>
               </div>
@@ -187,7 +201,7 @@ $questionsPerPage = 10;
               <span class="icon"><img class="" src="images/feature-3.png" alt="" style="width:50%"></span>
               <div class="content">
                 <h3 style="font-size:16px;">AI Buddy Examine your Solution</h3>
-                <p style="font-size:14px">AI Buddy examines your solutions, providing instant feedback and detailed
+                <p class="feature-des">AI Buddy examines your solutions, providing instant feedback and detailed
                   explanations, ensuring you understand and
                   correct mistakes effectively.</p>
               </div>
@@ -196,7 +210,7 @@ $questionsPerPage = 10;
               <span class="icon"><img class="" src="images/feature-4.png" alt="" style="width:50%"></span>
               <div class="content">
                 <h3 style="font-size:16px;">Get Daily Performance Reporting</h3>
-                <p style="font-size:14px">Receive daily performance reports with DoubtBuddy, offering insights into your
+                <p class="feature-des">Receive daily performance reports with DoubtBuddy, offering insights into your
                   progress and highlighting areas for
                   improvement to enhance your lear</p>
               </div>
