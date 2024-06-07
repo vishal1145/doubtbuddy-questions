@@ -56,19 +56,20 @@ $questionsPerPage = 10;
 
 <style>
   mjx-math {
-            white-space: wrap !important;
-            /* line-height: 0.7 !important; */
-            display:inline !important;
-        }
-        mjx-assistive-mml math {
-            display: none !important;
-            white-space: wrap !important;
-        }
-        mjx-container[jax="CHTML"][display="true"] {
-            display: inline !important;
-            text-align: center;
-            margin: 1em 0;
-        }
+    white-space: wrap !important;
+    display:inline !important;
+  }
+        
+  mjx-container[jax="CHTML"][display="true"] {
+    display: inline !important;
+    /* line-height:2 !important; */
+  }
+
+  /* @media screen and (max-width: 736px) {
+    mjx-container[jax="CHTML"][display="true"] {
+      line-height:0 !important;
+    }
+  } */
 
 </style>
 </head>
@@ -104,18 +105,16 @@ $questionsPerPage = 10;
         <section id="banner" class="d-flex justify-content-between">
           <div class="content">
             <header>
-              <h1>Hi, I’m DoubtBuddy<br />
+              <h1 style="color:#333333">Hi, I’m DoubtBuddy<br />
                 Your Best Study
                 Buddy</h1>
-              <p>Solve your doubts instantly & available 24/7</p>
-            </header>
-            <p>DoubtBuddy is an excellent educational platform offering personalized assistance for
-              students. Its user-friendly
-              interface and vast repository of resources make learning engaging and efficient. With expert
-              tutors available 24/7,
-              students receive timely help, ensuring they grasp concepts thoroughly and excel
-              academically. Perfect for homework help
-              and exam preparation!</p>
+                <p style="font-weight:500;">Solve your doubts instantly & available 24/7</p>
+                </header>
+            <p>Doubtbuddy is your tutor in your
+              pocket , whenever you are stuck at a problem , 
+              just click on the image of your doubt and get 
+              instant solution.
+            </p>
 
             <a class="" href="https://play.google.com/store/apps/details?id=com.doubtbuddy.student&amp;pli=1"
               target="_blank" rel="noopener noreferrer"><img class="play-store-btn" src="images/playstore.png"
@@ -138,8 +137,8 @@ $questionsPerPage = 10;
                 foreach ($questions as $question) {
                   $question_slug = $question['slug'];
                   echo "<article id='.$pageNo.'>
-                          <h3>{$question['chapter']['name']}</h3>
-                          <p>{$question['description']['value']}</p>
+                          <h3 style='font-weight:600; font-size:14px;'>{$question['chapter']['name']}</h3>
+                          <p style='font-size:14px;'>{$question['description']['value']}</p>
                           <ul class='actions'>
                             <li><a href='{$question_slug}' class='button'>View Solution</a></li>
                           </ul>
@@ -169,8 +168,8 @@ $questionsPerPage = 10;
               <!-- <span class="icon fa-gem"></span> -->
               <span class="icon"><img class="" src="images/feature-1.png" alt="" style="width:50%"></span>
               <div class="content">
-                <h3>Solve your Doubts Instantly</h3>
-                <p>Solve your doubts instantly with DoubtBuddy, where expert tutors and comprehensive
+                <h3 style="font-size:16px;">Solve your Doubts Instantly</h3>
+                <p style="font-size:14px;">Solve your doubts instantly with DoubtBuddy, where expert tutors and comprehensive
                   resources provide immediate,
                   effective assistance anytime you need.</p>
               </div>
@@ -178,8 +177,8 @@ $questionsPerPage = 10;
             <article>
               <span class="icon"><img class="" src="images/feature-2.png" alt="" style="width:50%"></span>
               <div class="content">
-                <h3>Now Practice based on your Aptitude</h3>
-                <p>Practice based on your aptitude with DoubtBuddy, offering tailored exercises and
+                <h3 style="font-size:16px;">Now Practice based on your Aptitude</h3>
+                <p style="font-size:14px">Practice based on your aptitude with DoubtBuddy, offering tailored exercises and
                   quizzes that match your skill level for
                   optimal learning.</p>
               </div>
@@ -187,8 +186,8 @@ $questionsPerPage = 10;
             <article>
               <span class="icon"><img class="" src="images/feature-3.png" alt="" style="width:50%"></span>
               <div class="content">
-                <h3>AI Buddy Examine your Solution</h3>
-                <p>AI Buddy examines your solutions, providing instant feedback and detailed
+                <h3 style="font-size:16px;">AI Buddy Examine your Solution</h3>
+                <p style="font-size:14px">AI Buddy examines your solutions, providing instant feedback and detailed
                   explanations, ensuring you understand and
                   correct mistakes effectively.</p>
               </div>
@@ -196,8 +195,8 @@ $questionsPerPage = 10;
             <article>
               <span class="icon"><img class="" src="images/feature-4.png" alt="" style="width:50%"></span>
               <div class="content">
-                <h3>Get Daily Performance Reporting</h3>
-                <p>Receive daily performance reports with DoubtBuddy, offering insights into your
+                <h3 style="font-size:16px;">Get Daily Performance Reporting</h3>
+                <p style="font-size:14px">Receive daily performance reports with DoubtBuddy, offering insights into your
                   progress and highlighting areas for
                   improvement to enhance your lear</p>
               </div>
@@ -208,15 +207,14 @@ $questionsPerPage = 10;
       <!-- Section -->
 								<section>
                   <div class="d-flex foot-cont-details">
-                  
-                    <div class="w-100" style="margin-right:5em">
+                    <!-- <div class="w-100" style="margin-right:5em">
 									  <header class="major">
 										  <h2 class="mb-4">Get in touch</h2>
 									  </header>
 									  <p style="text-align:justify">DoubtBuddy is the ultimate Doubt-Solving app where students can solve their doubts instantly. We cater to all the different subjects including Physics, Maths, Biology for JEE/NEET Aspirants or any other subject covered by the NCERT. We also provide preparation guides/strategies for any number of competitive exams such as IIT, NIT, IIIT,DTU, DU, AIIMS and many another Government engineering/medical colleges.</p>
-                  </div>
+                  </div> -->
                   
-                    <div class="w-100">
+                    <div class="">
                     <header class="major">
 										  <h2 class="mb-4">Contact Details</h2>
 									  </header>
@@ -236,10 +234,11 @@ $questionsPerPage = 10;
 
 							<!-- Footer -->
               <section class="py-2">
-								<footer id="footer" class="text-center">
-									<p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a> Website: <a href="https://doubtbuddy.com">DoubtBuddy</a>.</p>
-								</footer>
-              </section>
+                <footer id="footer" class="text-center">
+                    <p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a> Website: <a
+                                href="https://doubtbuddy.com">DoubtBuddy.com</a>.</p>
+                </footer>
+            </section>
         </div>
       </div>
 

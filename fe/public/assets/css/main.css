@@ -1,5 +1,6 @@
 @import url(fontawesome-all.min.css);
 @import url("https://fonts.googleapis.com/css?family=Open+Sans:400,600,400italic,600italic|Roboto+Slab:400,700");
+@import url('https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 html,
 body,
@@ -86,8 +87,11 @@ video {
   padding: 0;
   border: 0;
   font-size: 100%;
+  /* font-size:14px; */
   font: inherit;
   vertical-align: baseline;
+  font-family:"Poppins", sans-serif;
+  color:var(--maincolor2)
 }
 
 article,
@@ -106,6 +110,9 @@ section {
 
 :root {
   --maincolor: #2454dd;
+}
+:root{
+  --maincolor2: #333333;
 }
 
 body {
@@ -208,7 +215,7 @@ input,
 select,
 textarea {
   color: #7f888f;
-  font-family: "Open Sans", sans-serif;
+  font-family: "Poppins", sans-serif;
   font-size: 13pt;
   font-weight: 400;
   line-height: 1.65;
@@ -278,7 +285,7 @@ h4,
 h5,
 h6 {
   color: #3d4449;
-  font-family: "Roboto Slab", serif;
+  font-family: "Poppins", serif;
   font-weight: 700;
   line-height: 1.5;
   margin: 0 0 1em 0;
@@ -365,7 +372,7 @@ code {
   background: rgba(230, 235, 237, 0.25);
   border-radius: 0.375em;
   border: solid 1px rgba(210, 215, 217, 0.75);
-  font-family: "Courier New", monospace;
+  font-family: "Poppins", monospace;
   font-size: 0.9em;
   margin: 0 0.25em;
   padding: 0.25em 0.65em;
@@ -373,7 +380,7 @@ code {
 
 pre {
   -webkit-overflow-scrolling: touch;
-  font-family: "Courier New", monospace;
+  font-family: "Poppins", monospace;
   font-size: 0.9em;
   margin: 0 0 2em 0;
 }
@@ -1522,7 +1529,7 @@ article.special {
 }
 
 header p {
-  font-family: "Roboto Slab", serif;
+  font-family: "Poppins", serif;
   font-size: 1em;
   font-weight: 400;
   letter-spacing: 0.075em;
@@ -2139,7 +2146,7 @@ button,
   color: var(--maincolor) !important;
   cursor: pointer;
   display: inline-block;
-  font-family: "Roboto Slab", serif;
+  font-family: "Poppins", serif;
   font-size: 0.8em;
   font-weight: 700;
   height: 3.5em;
@@ -2603,6 +2610,7 @@ button:disabled,
 }
 #main > .inner > section:first-of-type {
   border-top: 0 !important;
+  padding-bottom:0;
 }
 @media screen and (max-width: 1680px) {
   #main > .inner {
@@ -2873,7 +2881,7 @@ button:disabled,
 #header .logo {
   border-bottom: 0;
   color: inherit;
-  font-family: "Roboto Slab", serif;
+  font-family: "Poppins", serif;
   font-size: 1.125em;
 }
 #header .icons {
@@ -2994,7 +3002,7 @@ button:disabled,
 
 /* Footer */
 #footer .copyright {
-  color: #9fa3a6;
+  /* color: #9fa3a6; */
   font-size: 0.9em;
 }
 #footer .copyright a {
@@ -3008,7 +3016,7 @@ button:disabled,
   -ms-user-select: none;
   user-select: none;
   color: #3d4449;
-  font-family: "Roboto Slab", serif;
+  font-family: "Poppins", serif;
   font-weight: 400;
   letter-spacing: 0.075em;
   list-style: none;
