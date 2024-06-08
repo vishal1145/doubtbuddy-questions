@@ -60,10 +60,6 @@ $correctAnswers = explode(',', $question['answer']);
 
 ?>
 
-<!-- <?php echo "<script>
-    console.log('".($correctAnswers)."');
-</script>"; ?> -->
-
 <!-- <?php echo "<script>console.log('".$imageUrl."');</script>"; ?> -->
 <!-- <?php echo "<script>console.log('".$linkUrl."');</script>"; ?> -->
 
@@ -109,7 +105,7 @@ $correctAnswers = explode(',', $question['answer']);
 
         .correct-ans{
             position:absolute;
-            top:-18%;
+            top:-12px;
             right:3%;
             background-color:white;
             color:#68C721;
@@ -132,7 +128,7 @@ $correctAnswers = explode(',', $question['answer']);
             color:#2454DD;
         }
         .option-div{
-            width:400px;
+            width:500px;
             font-size:14px;
         }
         .option{
@@ -155,15 +151,15 @@ $correctAnswers = explode(',', $question['answer']);
             background-color:#F1F4FD; 
             padding:15px; 
             border-radius:5px;
-            width:400px;
+            width:500px;
             margin-bottom:25px;
         }
-        .helpful-div{
+        /* .helpful-div{
             display:flex;
             align-items:center;
             justify-content:space-between;
             padding:15px;
-            width:400px;
+            width:500px;
         }
         .helpful-div .yes{
             color:#68C721; 
@@ -178,7 +174,7 @@ $correctAnswers = explode(',', $question['answer']);
             padding:7px; 
             border-radius:20px; 
             cursor:pointer;
-        }
+        } */
         .type{
             display:flex;
             align-items:center;
@@ -201,6 +197,7 @@ $correctAnswers = explode(',', $question['answer']);
             font-weight:600; 
             font-size:16px;
         }
+        
         @media screen and (max-width: 736px) {
             .contact{
                 font-size:14px;
@@ -247,11 +244,9 @@ $correctAnswers = explode(',', $question['answer']);
 
 <!-- Wrapper -->
 <div id="wrapper">
-
     <!-- Main -->
     <div id="main">
         <div class="inner">
-
             <!-- Header -->
             <header id="header">
                 <a href="https://doubtbuddy.com/question" class="logo d-flex align-items-center"><img src="images/db-logo2.png" alt=""
@@ -272,20 +267,18 @@ $correctAnswers = explode(',', $question['answer']);
 
             <?php if ($question['type'] === "Single Choice") { ?>
                 <section>
-                        <div class="type"><h3 class="type-head" style="color:#666666;">Single Choice</h3><h3><img src="images/type.png" alt=""></h3></div>
-                            <!-- <h3>Question : <?php echo $question['chapter']['name']; ?></h3> -->
-                             <?php if ($question_img) { ?>
-                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
-                            <?php } ?>
-
-                            <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                    <div class="type"><h3 class="type-head" style="color:#666666;">Single Choice</h3><h3><img src="images/type.png" alt=""></h3></div>
+                    <?php if ($question_img) { ?>
+                        <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                    <?php } ?>
+                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
 
                     <?php if ($question_opt) { ?>
                         <!-- <h3>Options : </h3> -->
                         <div class="option-div">
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 1 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">A</span><span class="me-4"><?php echo $question['options']['a']['value']; ?></span>
+                            ?>; "><span class="choice">A</span><span><?php echo $question['options']['a']['value']; ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 1 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -293,7 +286,7 @@ $correctAnswers = explode(',', $question['answer']);
                             
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 2 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">B</span><span class="me-4"><?php echo $question['options']['b']['value']; ?></span>
+                            ?>; "><span class="choice">B</span><span class=""><?php echo $question['options']['b']['value']; ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 2 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -301,7 +294,7 @@ $correctAnswers = explode(',', $question['answer']);
 
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 3 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">C</span><span class="me-4"><?php echo $question['options']['c']['value']; ?></span>
+                            ?>; "><span class="choice">C</span><span class=""><?php echo $question['options']['c']['value']; ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 3 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -320,11 +313,11 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php } ?>
 
                     <div class="solution-div">
-                    <h3 class="solution-head them-color">Solution</h3>
-                    <?php
-                        $question_solution = $question['solution']['description'];
-                        $solution_description = replaceSingleDollarSigns($question_solution);
-                    ?>
+                        <h3 class="solution-head them-color">Solution</h3>
+                        <?php
+                            $question_solution = $question['solution']['description'];
+                            $solution_description = replaceSingleDollarSigns($question_solution);
+                        ?>
                         <?php if ($solution_img) { ?>
                             <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
                         <?php } ?>
@@ -337,38 +330,37 @@ $correctAnswers = explode(',', $question['answer']);
 
             <?php } else if ($question['type'] === "Multiple Choice") { ?>
                 <section>
-                        <div class="type"><h3 class="type-head" style="color:#666666;">Multiple Choice</h3><h3><img src="images/type.png" alt=""></h3></div>
-                            <!-- <h3>Question : <?php echo $question['chapter']['name']; ?></h3> -->
-                             <?php if ($question_img) { ?>
-                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
-                            <?php } ?>
-                            <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                    <div class="type"><h3 class="type-head" style="color:#666666;">Multiple Choice</h3><h3><img src="images/type.png" alt=""></h3></div>
+                    <?php if ($question_img) { ?>
+                        <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                    <?php } ?>
+                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
 
-                            <?php $correctAnswers = explode(',', $question['answer']); ?>
+                    <?php $correctAnswers = explode(',', $question['answer']); ?>
 
-                            <?php if ($question_opt) { ?>
-                            <!-- <h3>Options : </h3> -->
-                            <div class="option-div f-12">
-                                <div class="option" style="border:1px solid <?php
-                                    echo in_array(1, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                    ?>;"><span class="choice">A</span><span class="me-4"><?php echo $question['options']['a']['value']; ?></span>
+                    <?php if ($question_opt) { ?>
+                        <!-- <h3>Options : </h3> -->
+                        <div class="option-div f-12">
+                            <div class="option" style="border:1px solid <?php
+                                echo in_array(1, $correctAnswers) ? '#68C721' : '#F3F3F3';
+                                ?>;"><span class="choice">A</span><span><?php echo $question['options']['a']['value']; ?></span>
                                 <div class="correct-ans" style="display:<?php
-                                    echo in_array(1, $correctAnswers) ? 'block' : 'none';
+                                echo in_array(1, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
                             </div>
                             
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(2, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                ?>;"><span class="choice">B</span><span class="me-4"><?php echo $question['options']['b']['value']; ?></span>
-                            <div class="correct-ans" style="display:<?php
+                                ?>;"><span class="choice">B</span><span><?php echo $question['options']['b']['value']; ?></span>
+                                <div class="correct-ans" style="display:<?php
                                 echo in_array(2, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
                             </div>
 
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(3, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                ?>;"><span class="choice">C</span><span class="me-4"><?php echo $question['options']['c']['value']; ?></span>
-                            <div class="correct-ans" style="display:<?php
+                                ?>;"><span class="choice">C</span><span><?php echo $question['options']['c']['value']; ?></span>
+                                <div class="correct-ans" style="display:<?php
                                 echo in_array(3, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
                             </div>
@@ -376,7 +368,7 @@ $correctAnswers = explode(',', $question['answer']);
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(4, $correctAnswers) ? '#68C721' : '#F3F3F3';
                                 ?>;"><span class="choice">D</span><span><?php echo $question['options']['d']['value']; ?></span>
-                            <div class="correct-ans" style="display:<?php
+                                <div class="correct-ans" style="display:<?php
                                 echo in_array(4, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
                             </div>
@@ -386,11 +378,11 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php } ?>
 
                     <div class="solution-div">
-                    <h3 class="solution-head them-color">Solution</h3>
-                    <?php
-                        $question_solution = $question['solution']['description'];
-                        $solution_description = replaceSingleDollarSigns($question_solution);
-                    ?>
+                        <h3 class="solution-head them-color">Solution</h3>
+                        <?php
+                            $question_solution = $question['solution']['description'];
+                            $solution_description = replaceSingleDollarSigns($question_solution);
+                        ?>
                         <?php if ($solution_img) { ?>
                             <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
                         <?php } ?>
@@ -401,60 +393,54 @@ $correctAnswers = explode(',', $question['answer']);
 
             <?php } else if ($question['type'] === "Subjective") { ?>
                 <section>
-                         <div class="type"><h3 class="type-head" style="color:#666666;">Subjective Type</h3><h3><img src="images/type.png" alt=""></h3></div>
-                          <?php if ($question_img) { ?>
-                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
-                            <?php } ?>
-                        <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                    <div class="type"><h3 class="type-head" style="color:#666666;">Subjective Type</h3><h3><img src="images/type.png" alt=""></h3></div>
+                    <?php if ($question_img) { ?>
+                        <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                    <?php } ?>
+                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
                     
                     <div class="solution-div">
-                    <h3 class="solution-head them-color">Solution</h3>
-                    <?php
-                        $question_solution = $question['solution']['description'];
-                        $solution_description = replaceSingleDollarSigns($question_solution);
-                    ?>
+                        <h3 class="solution-head them-color">Solution</h3>
+                        <?php
+                            $question_solution = $question['solution']['description'];
+                            $solution_description = replaceSingleDollarSigns($question_solution);
+                        ?>
                         <?php if ($solution_img) { ?>
                             <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
                         <?php } ?>
 
                         <p class="mb-0" solution-det><?php echo $solution_description; ?></p>
-                       
                     </div>
-                <!-- <div class="helpful-div"><span style="font-weight:600;">Was this helpful?</span> <div class="d-flex" ><span class="yes me-4 d-flex align-items-center"><img class="me-1" src="images/yes.png" alt=""> Yes</span> <span class="no d-flex align-items-center"><img class="me-1" src="images/no.png" alt=""> No</span></div></div> -->
+                    <!-- <div class="helpful-div"><span style="font-weight:600;">Was this helpful?</span> <div class="d-flex" ><span class="yes me-4 d-flex align-items-center"><img class="me-1" src="images/yes.png" alt=""> Yes</span> <span class="no d-flex align-items-center"><img class="me-1" src="images/no.png" alt=""> No</span></div></div> -->
                 </section>
 
             <?php } else if ($question['type'] === "True False") { ?>
                 <section>
-                   
-                            <div class="type"><h3 class="type-head" style="color:#666666;">True / False</h3><h3><img src="images/type.png" alt=""></h3></div>
-                             
-                             <?php if ($question_img) { ?>
-                                <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
-                            <?php } ?>
-
-                            <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
-
-                            <!-- <p>Assertion: <?php echo $question['description']['assertion']['value']; ?></p> -->
-                            <!-- <p>Reason : <?php echo $question['description']['reason']['value']; ?></p> -->
-                   
+                    <div class="type"><h3 class="type-head" style="color:#666666;">True / False</h3><h3><img src="images/type.png" alt=""></h3></div>
+                    <?php if ($question_img) { ?>
+                        <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
+                    <?php } ?>
+                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                    <!-- <p>Assertion: <?php echo $question['description']['assertion']['value']; ?></p> -->
+                    <!-- <p>Reason : <?php echo $question['description']['reason']['value']; ?></p> -->
 
                     <?php if ($question_opt) { ?>
                         <!-- <h3>Options : </h3> -->
                         <div class="option-div f-12">
-                        <div class="option" style="border:1px solid <?php
-                            echo $question['answer'] == 1 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">A</span><span class="me-4"><?php echo $question['options']['a']['value']; ?></span>
-                            <div class="correct-ans" style="display:<?php
-                            echo $question['answer'] == 1 ? 'block' : 'none';
-                            ?>;">Correct Answer</div>
+                            <div class="option" style="border:1px solid <?php
+                                echo $question['answer'] == 1 ? '#68C721' : '#F3F3F3';
+                                ?>; "><span class="choice">A</span><span><?php echo $question['options']['a']['value']; ?></span>
+                                <div class="correct-ans" style="display:<?php
+                                echo $question['answer'] == 1 ? 'block' : 'none';
+                                ?>;">Correct Answer</div>
                             </div>
 
-                        <div class="option" style="border:1px solid <?php
-                            echo $question['answer'] == 2 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">B</span><span class="me-4"><?php echo $question['options']['b']['value']; ?></span>
-                            <div class="correct-ans" style="display:<?php
-                            echo $question['answer'] == 2 ? 'block' : 'none';
-                            ?>;">Correct Answer</div>
+                            <div class="option" style="border:1px solid <?php
+                                echo $question['answer'] == 2 ? '#68C721' : '#F3F3F3';
+                                ?>; "><span class="choice">B</span><span><?php echo $question['options']['b']['value']; ?></span>
+                                <div class="correct-ans" style="display:<?php
+                                echo $question['answer'] == 2 ? 'block' : 'none';
+                                ?>;">Correct Answer</div>
                             </div>
                         </div>
                     <?php } else { ?>
@@ -462,23 +448,22 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php } ?>
 
                     <div class="solution-div">
-                    <h3 class="solution-head them-color">Solution</h3>
-                    <?php
-                        $question_solution = $question['solution']['description'];
-                        $solution_description = replaceSingleDollarSigns($question_solution);
-                    ?>
+                        <h3 class="solution-head them-color">Solution</h3>
+                        <?php
+                            $question_solution = $question['solution']['description'];
+                            $solution_description = replaceSingleDollarSigns($question_solution);
+                        ?>
                         <?php if ($solution_img) { ?>
                             <img src="<?php echo htmlspecialchars($solution_img); ?>" alt="">
                         <?php } ?>
                         <p class="mb-0 solution-det"><?php echo $solution_description; ?></p>
                     </div>
-                <!-- <div class="helpful-div"><span style="font-weight:600;">Was this helpful?</span> <div class="d-flex" ><span class="yes me-4 d-flex align-items-center"><img class="me-1" src="images/yes.png" alt=""> Yes</span> <span class="no d-flex align-items-center"><img class="me-1" src="images/no.png" alt=""> No</span></div></div> -->
+                    <!-- <div class="helpful-div"><span style="font-weight:600;">Was this helpful?</span> <div class="d-flex" ><span class="yes me-4 d-flex align-items-center"><img class="me-1" src="images/yes.png" alt=""> Yes</span> <span class="no d-flex align-items-center"><img class="me-1" src="images/no.png" alt=""> No</span></div></div> -->
                 </section>
 
             <?php } else { ?>
                 <p></p>
             <?php } ?>
-
 
             <!-- Advertise area -->
             <?php if ($advertise) { ?>
@@ -501,19 +486,25 @@ $correctAnswers = explode(',', $question['answer']);
                         </a>
                     </div>
                 <?php } else { ?>
+                    <!-- <p></p> -->
                 <?php } ?>
 
             <?php } else { ?>
-                <!-- <p>Not advertise</p> -->
+                <!-- <p></p> -->
             <?php } ?>
 
             <hr class="major" />
-
-            <header class="major">
+            <?php
+            // if (is_array($sim_questions) && !empty($sim_questions)) {
+            //     echo "<header class='major'>
+            //         <h2>SIMILAR QUESTIONS</h2>
+            //     </header>";
+            // } 
+            ?>
+            <header class='major'>
                 <h2>SIMILAR QUESTIONS</h2>
             </header>
             <div class="posts">
-
                 <?php
                 if (is_array($sim_questions) && !empty($sim_questions)) {
                     foreach ($sim_questions as $sim_question) {
@@ -522,18 +513,17 @@ $correctAnswers = explode(',', $question['answer']);
                                     <h3 class='chapter-head'>{$sim_question['chapter']['name']}</h3>
                                     <p class='question-des'>{$sim_question['description']['value']}</p>
                                     <ul class='actions'>
-                                    <li><a href='${sim_question_slug}' class='button'>View Solution</a></li>
+                                        <li><a href='${sim_question_slug}' class='button'>View Solution</a></li>
                                     </ul>
-                                    </article>";
-                                }
-                                // <li><a href='details.php?slug=${sim_question_slug}' class='button'>View Solution</a></li>
+                                </article>";
+                    }
                 } else {
-                    echo "<p></p>";
+                    // echo "<p></p>";
                 }
                 ?>
             </div>
 
-            <!-- Section -->
+            <!-- Footer -->
             <section>
                 <div class="d-flex foot-cont-details">
                     <!-- <div class="w-100" style="margin-right:5em">
@@ -548,24 +538,22 @@ $correctAnswers = explode(',', $question['answer']);
                             <h2 class="mb-4">Contact Details</h2>
                         </header>
                         <ul class="contact">
-						<li class="icon solid fa-envelope"><a href="mailto:community@doubtbuddy.in">community@doubtbuddy.in</a></li>
-						<li class="icon solid fa-phone"><a href="tel:9897940807">+91 9897940807</a></li>
-						<li class="icon solid fa-home">M3M Cosmopolitian, Sector 66, Golf Course Extension Road, Gurgaon</li>
-                        <li class="ps-0">
-                        
-                        <a class="me-4 ms-1" href="https://doubtbuddy.com/privacy-policy" target="_blank" rel="noreferrer">Policy</a>
-                        <a href="https://doubtbuddy.com/tnc" target="_blank" rel="noreferrer">Terms</a>
-                      </li>
-					</ul>     
+						    <li class="icon solid fa-envelope"><a href="mailto:community@doubtbuddy.in">community@doubtbuddy.in</a></li>
+						    <li class="icon solid fa-phone"><a href="tel:9897940807">+91 9897940807</a></li>
+						    <li class="icon solid fa-home">M3M Cosmopolitian, Sector 66, Golf Course Extension Road, Gurgaon</li>
+                            <li class="ps-0">
+                                <a class="me-4 ms-1" href="https://doubtbuddy.com/privacy-policy" target="_blank" rel="noreferrer">Policy</a>
+                                <a href="https://doubtbuddy.com/tnc" target="_blank" rel="noreferrer">Terms</a>
+                            </li>
+					    </ul>     
                     </div>
                 </div>
             </section>
-
-            <!-- Footer -->
+            
             <section class="py-2">
                 <footer id="footer" class="text-center">
                     <p class="copyright my-0">&copy; DoubtBuddy. All rights reserved. </a> Website: <a
-                                href="https://doubtbuddy.com">DoubtBuddy.com</a>.</p>
+                    href="https://doubtbuddy.com">DoubtBuddy.com</a>.</p>
                 </footer>
             </section>
         </div>
