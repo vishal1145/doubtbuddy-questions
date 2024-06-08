@@ -81,7 +81,10 @@ $questionsPerPage = 10;
       font-size:14px;
     }
     .top-head{
-      font-size:14;
+      font-size:14px;
+    }
+    .contact{
+      font-size:14px;
     }
   }
 
@@ -122,7 +125,7 @@ $questionsPerPage = 10;
               <h1 style="color:#333333">Hi, I’m DoubtBuddy<br />
                 Your Best Study
                 Buddy</h1>
-                <p style="font-weight:500;">Solve your doubts instantly & available 24/7</p>
+                <p style="font-weight:500;" class="top-head">Solve your doubts instantly & available 24/7</p>
                 </header>
             <p class="top-head">Doubtbuddy is your tutor in your
               pocket , whenever you are stuck at a problem , 

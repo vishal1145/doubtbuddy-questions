@@ -202,6 +202,9 @@ $correctAnswers = explode(',', $question['answer']);
             font-size:16px;
         }
         @media screen and (max-width: 736px) {
+            .contact{
+                font-size:14px;
+            }
             .option-div{
                 width:100%;
                 font-size:12px;
