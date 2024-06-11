@@ -46,7 +46,8 @@ $advertiseType = $advertise[0]['type'];
 ?>
 
 <?php function replaceSingleDollarSigns($text) {
-    return str_replace('$', '$$', $text);
+    // return str_replace('$', '$$', $text);
+    return preg_replace('/(?<!\$)\$(?!\$)/', '$$', $text);
 } 
 
 $question_opt = $question['options'];
@@ -58,6 +59,19 @@ $correctAnswers = explode(',', $question['answer']);
 // $correctAnswers = array_filter(array_map('trim', explode(',', $answersString)));
 // var_dump($question_ans);
 
+?>
+<?php
+    $question_opt_a = $question['options']['a']['value'];
+    $question_option_a = replaceSingleDollarSigns($question_opt_a);
+
+    $question_opt_b = $question['options']['b']['value'];
+    $question_option_b = replaceSingleDollarSigns($question_opt_b);
+
+    $question_opt_c = $question['options']['c']['value'];
+    $question_option_c = replaceSingleDollarSigns($question_opt_c);
+
+    $question_opt_d = $question['options']['d']['value'];
+    $question_option_d = replaceSingleDollarSigns($question_opt_d);
 ?>
 
 <!-- <?php echo "<script>console.log('".$imageUrl."');</script>"; ?> -->
@@ -142,10 +156,14 @@ $correctAnswers = explode(',', $question['answer']);
         }
         .option .choice{
             background-color: #F3F3F3; 
-            width:35px; 
-            padding:5px; 
+            width:30px; 
+            height:30px;
+            padding:10px; 
             border-radius:20px;
-            text-align:center;
+            /* text-align:center; */
+            display:flex;
+            align-items:center;
+            justify-content:center;
         }
         .solution-div{
             background-color:#F1F4FD; 
@@ -207,7 +225,9 @@ $correctAnswers = explode(',', $question['answer']);
                 font-size:12px;
             }
             .option .choice{
-                width:30px;
+                padding:15px;
+                width:25px;
+                height:25px;
             }
             .solution-div{
                 width:100%;
@@ -271,14 +291,19 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php if ($question_img) { ?>
                         <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                     <?php } ?>
-                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                    <?php
+                        $question_desc = $question['description']['value'];
+                        $question_description = replaceSingleDollarSigns($question_desc);
+                    ?>
+
+                    <p class="question-det f-w-5"><?php echo $question_description ?></p>
 
                     <?php if ($question_opt) { ?>
                         <!-- <h3>Options : </h3> -->
                         <div class="option-div">
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 1 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">A</span><span><?php echo $question['options']['a']['value']; ?></span>
+                            ?>; "><span class="choice">A</span><span><?php echo $question_option_a ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 1 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -286,7 +311,7 @@ $correctAnswers = explode(',', $question['answer']);
                             
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 2 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">B</span><span class=""><?php echo $question['options']['b']['value']; ?></span>
+                            ?>; "><span class="choice">B</span><span class=""><?php echo $question_option_b ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 2 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -294,7 +319,7 @@ $correctAnswers = explode(',', $question['answer']);
 
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 3 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">C</span><span class=""><?php echo $question['options']['c']['value']; ?></span>
+                            ?>; "><span class="choice">C</span><span class=""><?php echo $question_option_c ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 3 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -302,7 +327,7 @@ $correctAnswers = explode(',', $question['answer']);
 
                         <div class="option" style="border:1px solid <?php
                             echo $question['answer'] == 4 ? '#68C721' : '#F3F3F3';
-                            ?>; "><span class="choice">D</span><span><?php echo $question['options']['d']['value']; ?></span>
+                            ?>; "><span class="choice">D</span><span><?php echo $question_option_d ?></span>
                             <div class="correct-ans" style="display:<?php
                             echo $question['answer'] == 4 ? 'block' : 'none';
                             ?>;">Correct Answer</div>
@@ -334,7 +359,12 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php if ($question_img) { ?>
                         <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                     <?php } ?>
-                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                     <?php
+                        $question_desc = $question['description']['value'];
+                        $question_description = replaceSingleDollarSigns($question_desc);
+                    ?>
+
+                    <p class="question-det f-w-5"><?php echo $question_description ?></p>
 
                     <?php $correctAnswers = explode(',', $question['answer']); ?>
 
@@ -343,7 +373,7 @@ $correctAnswers = explode(',', $question['answer']);
                         <div class="option-div f-12">
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(1, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                ?>;"><span class="choice">A</span><span><?php echo $question['options']['a']['value']; ?></span>
+                                ?>;"><span class="choice">A</span><span><?php echo $question_option_a ?></span>
                                 <div class="correct-ans" style="display:<?php
                                 echo in_array(1, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
@@ -351,7 +381,7 @@ $correctAnswers = explode(',', $question['answer']);
                             
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(2, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                ?>;"><span class="choice">B</span><span><?php echo $question['options']['b']['value']; ?></span>
+                                ?>;"><span class="choice">B</span><span><?php echo $question_option_b ?></span>
                                 <div class="correct-ans" style="display:<?php
                                 echo in_array(2, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
@@ -359,7 +389,7 @@ $correctAnswers = explode(',', $question['answer']);
 
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(3, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                ?>;"><span class="choice">C</span><span><?php echo $question['options']['c']['value']; ?></span>
+                                ?>;"><span class="choice">C</span><span><?php echo $question_option_c ?></span>
                                 <div class="correct-ans" style="display:<?php
                                 echo in_array(3, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
@@ -367,7 +397,7 @@ $correctAnswers = explode(',', $question['answer']);
 
                             <div class="option" style="border:1px solid <?php
                                 echo in_array(4, $correctAnswers) ? '#68C721' : '#F3F3F3';
-                                ?>;"><span class="choice">D</span><span><?php echo $question['options']['d']['value']; ?></span>
+                                ?>;"><span class="choice">D</span><span><?php echo $question_option_d ?></span>
                                 <div class="correct-ans" style="display:<?php
                                 echo in_array(4, $correctAnswers) ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
@@ -397,7 +427,12 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php if ($question_img) { ?>
                         <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                     <?php } ?>
-                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
+                     <?php
+                        $question_desc = $question['description']['value'];
+                        $question_description = replaceSingleDollarSigns($question_desc);
+                    ?>
+
+                    <p class="question-det f-w-5"><?php echo $question_description ?></p>
                     
                     <div class="solution-div">
                         <h3 class="solution-head them-color">Solution</h3>
@@ -420,16 +455,19 @@ $correctAnswers = explode(',', $question['answer']);
                     <?php if ($question_img) { ?>
                         <img src="<?php echo htmlspecialchars($question_img); ?>" alt="" width="50%">
                     <?php } ?>
-                    <p class="question-det f-w-5"><?php echo $question['description']['value']; ?></p>
-                    <!-- <p>Assertion: <?php echo $question['description']['assertion']['value']; ?></p> -->
-                    <!-- <p>Reason : <?php echo $question['description']['reason']['value']; ?></p> -->
+                    <?php
+                        $question_desc = $question['description']['value'];
+                        $question_description = replaceSingleDollarSigns($question_desc);
+                    ?>
+
+                    <p class="question-det f-w-5"><?php echo $question_description ?></p>
 
                     <?php if ($question_opt) { ?>
                         <!-- <h3>Options : </h3> -->
                         <div class="option-div f-12">
                             <div class="option" style="border:1px solid <?php
                                 echo $question['answer'] == 1 ? '#68C721' : '#F3F3F3';
-                                ?>; "><span class="choice">A</span><span><?php echo $question['options']['a']['value']; ?></span>
+                                ?>; "><span class="choice">A</span><span><?php echo $question_option_a ?></span>
                                 <div class="correct-ans" style="display:<?php
                                 echo $question['answer'] == 1 ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
@@ -437,7 +475,7 @@ $correctAnswers = explode(',', $question['answer']);
 
                             <div class="option" style="border:1px solid <?php
                                 echo $question['answer'] == 2 ? '#68C721' : '#F3F3F3';
-                                ?>; "><span class="choice">B</span><span><?php echo $question['options']['b']['value']; ?></span>
+                                ?>; "><span class="choice">B</span><span><?php echo $question_option_b ?></span>
                                 <div class="correct-ans" style="display:<?php
                                 echo $question['answer'] == 2 ? 'block' : 'none';
                                 ?>;">Correct Answer</div>
@@ -504,14 +542,17 @@ $correctAnswers = explode(',', $question['answer']);
             <header class='major'>
                 <h2>SIMILAR QUESTIONS</h2>
             </header>
+
             <div class="posts">
                 <?php
                 if (is_array($sim_questions) && !empty($sim_questions)) {
                     foreach ($sim_questions as $sim_question) {
+                        $sim_question_desc = $sim_question['description']['value'];
+                        $sim_question_description = replaceSingleDollarSigns($sim_question_desc);
                         $sim_question_slug = $sim_question['slug'];
                         echo "<article>
                                     <h3 class='chapter-head'>{$sim_question['chapter']['name']}</h3>
-                                    <p class='question-des'>{$sim_question['description']['value']}</p>
+                                    <p class='question-des'>{$sim_question_description}</p>
                                     <ul class='actions'>
                                         <li><a href='${sim_question_slug}' class='button'>View Solution</a></li>
                                     </ul>

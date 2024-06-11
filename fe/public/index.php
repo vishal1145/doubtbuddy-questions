@@ -27,6 +27,14 @@ $questionsPerPage = 10;
 // exit;
 ?>
 
+<?php function replaceSingleDollarSigns($text) {
+    // return str_replace('$', '$$', $text);
+    return preg_replace('/(?<!\$)\$(?!\$)/', '$$', $text);
+} 
+?>
+
+<!-- <?php echo "<script>console.log('".$question_description."');</script>"; ?> -->
+
 <!DOCTYPE HTML>
 <html>
 
@@ -149,13 +157,20 @@ $questionsPerPage = 10;
             <h2>Questions</h2>
           </header>
           <div id="questions" class="posts">
+            <!-- <?php
+              $question_desc = $question['description']['value'];
+              $question_description = replaceSingleDollarSigns($question_desc);
+            ?> -->
             <?php 
               if (is_array($questions) && !empty($questions)) {
                 foreach ($questions as $question) {
+                  $question_desc = $question['description']['value'];
+                  $question_description = replaceSingleDollarSigns($question_desc);
+
                   $question_slug = $question['slug'];
                   echo "<article id='.$pageNo.'>
                           <h3 class='chapter-head'>{$question['chapter']['name']}</h3>
-                          <p class='question-des'>{$question['description']['value']}</p>
+                          <p class='question-des'>{$question_description}</p>
                           <ul class='actions'>
                             <li><a href='{$question_slug}' class='button'>View Solution</a></li>
                           </ul>
