@@ -29,7 +29,8 @@ if (isset($_GET['slug'])) {
 
 <?php
 // Fetch advertisement
-$url = 'https://uat.practiceapi.doubtbuddy.com/advertisement';
+// $url = 'https://uat.practiceapi.doubtbuddy.com/advertisement';
+$url = 'https://prodapi.doubtbuddy.com/advertisement';
 $options = array(
     'http' => array(
         'method' => 'GET',
