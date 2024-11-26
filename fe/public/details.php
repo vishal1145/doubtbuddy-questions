@@ -590,7 +590,7 @@ $correctAnswers = explode(',', $question['answer']);
                         </header>
                         <ul class="contact">
 						    <li class="icon solid fa-envelope"><a href="mailto:community@doubtbuddy.in">community@doubtbuddy.in</a></li>
-						    <li class="icon solid fa-phone"><a href="tel:9897940807">+91 9897940807</a></li>
+						    <!-- <li class="icon solid fa-phone"><a href="tel:9897940807">+91 9897940807</a></li> -->
 						    <li class="icon solid fa-home">M3M Cosmopolitian, Sector 66, Golf Course Extension Road, Gurgaon</li>
                             <li class="ps-0">
                                 <a class="me-4 ms-1" href="https://doubtbuddy.com/privacy-policy" target="_blank" rel="noreferrer">Policy</a>
